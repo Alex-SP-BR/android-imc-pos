@@ -10,6 +10,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.text.DecimalFormat
+import java.text.NumberFormat
 import java.util.Locale
 import kotlin.math.pow
 
@@ -114,7 +116,12 @@ class MainActivity : AppCompatActivity() {
 
         //Sainda
 
-        tvResultado.text = "%.2f".format(imc)
+        val nf = NumberFormat.getNumberInstance(Locale.getDefault() )
+        val df = nf as DecimalFormat
+
+        val resultado = df.format( imc )
+
+        tvResultado.text = resultado
 
     }//btCalcularOnClick
 
