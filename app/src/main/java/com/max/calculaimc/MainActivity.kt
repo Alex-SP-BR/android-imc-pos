@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        if(altura == 0.00){
+        if(altura == 0.0){
 
             etAltura.error = getString(R.string.erro_zeros_altura)
             return
@@ -118,6 +118,14 @@ class MainActivity : AppCompatActivity() {
 
         val nf = NumberFormat.getNumberInstance(Locale.getDefault() )
         val df = nf as DecimalFormat
+
+        if (idioma == "en") {
+            df.maximumFractionDigits = 1
+            df.minimumFractionDigits = 1
+        } else {
+            df.maximumFractionDigits = 2
+            df.minimumFractionDigits = 2
+        }
 
         val resultado = df.format( imc )
 
