@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         btCalcular.setOnLongClickListener {
 
             Toast.makeText(this,
-                "Botão para calcular o imc",
+                getString(R.string.cacular_clique_longo),
                 Toast.LENGTH_LONG
             ).show()
 
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         etPeso.setText( "" )
         etAltura.setText( "" )
 
-        tvResultado.text = "0.0"
+        tvResultado.text = getString(R.string.zeros)
 
         etPeso.requestFocus()
 
@@ -88,19 +88,19 @@ class MainActivity : AppCompatActivity() {
 
         if(peso == null){
 
-            etPeso.error = "O Campo Deve Ser Preenchido"
+            etPeso.error = getString(R.string.erro_peso)
             return
         }
 
         if(altura == null){
 
-            etAltura.error = "O Campo Deve Ser Preenchido"
+            etAltura.error = getString(R.string.erro_altura)
             return
         }
 
-        if(altura == 0.0){
+        if(altura == 0.00){
 
-            etAltura.error = "O Campo Deve Ser numero Valido"
+            etAltura.error = getString(R.string.erro_zeros_altura)
             return
         }
 
