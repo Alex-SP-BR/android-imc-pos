@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.util.Locale
 import kotlin.math.pow
 
 class MainActivity : AppCompatActivity() {
@@ -106,11 +107,25 @@ class MainActivity : AppCompatActivity() {
 
         //Processamento
 
-        val imc = peso / altura.pow(n = 2)
+        val idioma = Locale.getDefault().language
+        val imc = calcularImc(peso, altura, idioma)
+
+
 
         //Sainda
 
         tvResultado.text = "%.2f".format(imc)
 
     }//btCalcularOnClick
-}//fim do mainActivity
+
+    private fun calcularImc(peso: Double, altura: Double, idioma: String): Double {
+
+        val imc = if (idioma == "en") {
+            703 *  (peso / altura.pow(2))
+        } else {
+            peso / altura.pow(2)
+        }
+
+        return imc
+    }
+} //fim da MainActivity
