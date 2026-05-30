@@ -107,15 +107,13 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        //Processamento
+        //processamento
 
         val idioma = Locale.getDefault().language
-        val imc = calcularImc(peso, altura, idioma)
 
+        val imc = calcularImc( peso, altura, idioma )
 
-
-        //Sainda
-
+        //saída
         val nf = NumberFormat.getNumberInstance(Locale.getDefault() )
         val df = nf as DecimalFormat
 
@@ -127,20 +125,26 @@ class MainActivity : AppCompatActivity() {
             df.minimumFractionDigits = 2
         }
 
-        val resultado = df.format( imc )
+        val resultado = df.format(imc)
 
         tvResultado.text = resultado
 
-    }//btCalcularOnClick
 
+    } //fim btCalcularOnClick
     private fun calcularImc(peso: Double, altura: Double, idioma: String): Double {
 
         val imc = if (idioma == "en") {
-            703 *  (peso / altura.pow(2))
+
+            val pesoLb = peso * 2.20462
+            val alturaIn = altura * 39.3701
+
+            703 * (pesoLb / alturaIn.pow(2))
+
         } else {
             peso / altura.pow(2)
         }
 
         return imc
     }
+
 } //fim da MainActivity
